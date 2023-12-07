@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+  <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %> 
+  <%= link_to 'Novo post', new_post_path, class: "btn btn-primary" %>
+<% else %>
+  <%= button_to 'Entrar', new_user_session_path, class: "btn btn-primary" %>
+<% end %>
+<br>
+<% if @posts.present? %>
+  <% @posts.each do |post| %>
+    <small><%= post.user.name %></small>
+    <br>
+    <small><%= post.date.strftime("%H:%M:%S %d/%m/%Y")%></small>
+    <br>
+    <strong><%= post.title %></strong>
+    <br>
+    <p><%= post.content %></p>
+    <br>
+  <% end %>
+<% end %> 
